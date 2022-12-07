@@ -18,11 +18,11 @@ section{
     grid-template-columns: 100px calc(var(--right-card-width) + (var(--item-space) * 3)) 100px;
     justify-content: center;
     align-items: center;
-    column-gap: 40px;
+    column-gap: 60px;
 }
 #left_card{
     width: 100px;
-    height: 100px;
+    height: auto;
 }
 
 #left_card img{
@@ -49,10 +49,8 @@ section{
 }
 
 #rightCard{
-    /* display: flex; */
-    /* flex-flow: column; */
     width: 100px;
-    row-gap: 20px;
+    row-gap: 25px;
     display: flex;
     flex-flow: column wrap;
 }
