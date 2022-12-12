@@ -5,7 +5,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Josefin Sans', sans-serif;;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #e8e8e8;
 }
 :root{
     --right-card-width: 445px;
@@ -46,14 +47,22 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #969696;
+    background-color: #ffffff;
+    border-radius: 15px;
 }
 
 .item img{
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     display: inline-block;
+    background-color: #ffffff;
 }
+
+.item img.star.dot, .item img.star.scale{
+    width: 85px;
+    height: 85px;
+}
+
 
 #rightCard{
     width: 100px;
@@ -61,10 +70,31 @@ section{
     display: flex;
     flex-flow: column wrap;
 }
-
-#rightCard img{
-    width: 100%;
-    height: 100%;
+#rightCard .incressCount, #rightCard .discressCount{
+    background-size: 100% 100%;
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#rightCard .incressCount{
+    background-image: url("../img/star-bg.png");
+}
+#rightCard .incressCount p{
+    margin-top: 20px;
+    font-size: 40px;
+}
+#rightCard .discressCount{
+    background-image: url("../img/card-list-bg.png");
+}
+#rightCard .discressCount p{
+    font-size: 40px;
+}
+#rightCard p{
+    font-weight: bold;
+    color: #969696;
 }
 
 #rightCard .timmer{
@@ -79,6 +109,4 @@ section{
 }
 .timmer p{
     font-size: 25px;
-    font-weight: bold;
-    color: #969696;
 }

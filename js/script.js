@@ -56,6 +56,7 @@ const variantList = {
         },
     ],
 };
+console.log(variantList.color);
 const colorList = ["blue", "orange", "violet", "green"];
 const imageList = [];
 let i = 0;
@@ -66,7 +67,7 @@ colorList.forEach((color) => {
         const style = ["dot", "scale", "non", "fill"];
 
         style.forEach((style) => {
-            imageList.push({ img:`${color}-${shape}-${style}.png` });
+            imageList.push({ img:`${color}-${shape}-${style}.png`, color : color, shape : shape, style : style});
             i += 1;
 
             const word = imageList[i - 1];
@@ -93,17 +94,19 @@ colorList.forEach((color) => {
     });
 });
 
-console.log(imageList);
+// console.log(imageList);
 
 // create div
 const cardListContainer = document.getElementById("card_list");
 
 
 
-const divCreator = (imageSrc, div_class) => {
+const divCreator = (data, div_class) => {
+    const {img, color, shape, style} = data;
     const imgTag = document.createElement("img");
-    imgTag.src = imageSrc;
+    imgTag.src = `img/cardList/${img}`;
     imgTag.alt = "card image";
+    imgTag.className = `${shape} ${color} ${style}`;
 
     const divTage = document.createElement("div");
     divTage.className = `item item_${div_class}`;
@@ -147,14 +150,37 @@ class CardGame {
         const fontImage = imageList.slice(0, 16);
 
         fontImage.forEach((src, index) => {
-            divCreator(`img/cardList/${src.img}`, index);
+            divCreator(src, index);
         })
+    }
+    
+    // Click handeller
+
+    cardListclickHandler() {
+        const itemList = document.querySelectorAll(".item");
+
+        itemList.forEach((value, index) => {
+            // console.log(value);
+            value.addEventListener("click", callOnclick)
+        }) 
+        // item.addEventListener("click", function() {
+        //     console.log("click")
+        // });
+        // console.log("hellow", item);
     }
 }
 
 const game = new CardGame();
-console.log(game.allCardlist());
+// console.log(game.allCardlist());
 console.log(game.counDown(71));
 
 
 game.cardTable();
+game.cardListclickHandler();
+
+function callOnclick() {
+    console.log("Hellow World")
+}
+
+
+
