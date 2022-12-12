@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;;
 }
 :root{
     --right-card-width: 445px;
@@ -39,12 +43,15 @@ section{
 .item{
     width: 100%;
     height: 100%;
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #969696;
 }
 
 .item img{
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 60px;
     display: inline-block;
 }
 
@@ -72,4 +79,6 @@ section{
 }
 .timmer p{
     font-size: 25px;
+    font-weight: bold;
+    color: #969696;
 }

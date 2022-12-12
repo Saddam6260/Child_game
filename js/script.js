@@ -66,7 +66,7 @@ colorList.forEach((color) => {
         const style = ["dot", "scale", "non", "fill"];
 
         style.forEach((style) => {
-            imageList.push({ img: `${color}-${shape}-${style}` });
+            imageList.push({ img:`${color}-${shape}-${style}.png` });
             i += 1;
 
             const word = imageList[i - 1];
@@ -93,23 +93,17 @@ colorList.forEach((color) => {
     });
 });
 
-// console.log(variantList.color);
-// console.log(variantList.shape);
-// console.log(variantList.style);
-
-// console.log(imageList);
-// console.log(typeof(imageList));
-
-const cardListContainer = document.getElementById("card_list");
+console.log(imageList);
 
 // create div
+const cardListContainer = document.getElementById("card_list");
 
-const divCreator = (imgLink, div_class) => {
+
+
+const divCreator = (imageSrc, div_class) => {
     const imgTag = document.createElement("img");
-    imgTag.src = imgLink;
-    imgTag.alt = "No image show";
-    imgTag.style.height = "60px";
-    imgTag.style.width = "60px";
+    imgTag.src = imageSrc;
+    imgTag.alt = "card image";
 
     const divTage = document.createElement("div");
     divTage.className = `item item_${div_class}`;
@@ -118,11 +112,6 @@ const divCreator = (imgLink, div_class) => {
     cardListContainer.appendChild(divTage);
 };
 
-// genaret div
-
-// cardList.map((name, num) => {
-//     divCreator(name.src, num+1);
-// });
 
 // Timmer Functions
 
@@ -152,8 +141,20 @@ class CardGame {
             }`;
         }, 1000);
     }
+
+    // Card Table
+    cardTable() {
+        const fontImage = imageList.slice(0, 16);
+
+        fontImage.forEach((src, index) => {
+            divCreator(`img/cardList/${src.img}`, index);
+        })
+    }
 }
 
 const game = new CardGame();
 console.log(game.allCardlist());
 console.log(game.counDown(71));
+
+
+game.cardTable();
