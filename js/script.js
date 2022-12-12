@@ -56,7 +56,8 @@ const variantList = {
         },
     ],
 };
-console.log(variantList.color);
+
+// console.log(variantList.color);
 const colorList = ["blue", "orange", "violet", "green"];
 const imageList = [];
 let i = 0;
@@ -93,8 +94,6 @@ colorList.forEach((color) => {
         });
     });
 });
-
-// console.log(imageList);
 
 // create div
 const cardListContainer = document.getElementById("card_list");
@@ -181,6 +180,23 @@ game.cardListclickHandler();
 function callOnclick() {
     console.log("Hellow World")
 }
+
+// console.log(imageList);
+
+// Genared 16 difrent style
+// const firstSixteen = [];
+// const color = variantList.shape;
+
+// color.forEach((colorvaluelist) => {
+    
+//     const colorValue = colorvaluelist.value;
+
+//     colorValue.forEach((value) => {
+//         console.log(value);
+//     });
+// });
+
+console.log(variantList)
 
 
 
