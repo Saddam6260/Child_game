@@ -1,62 +1,3 @@
-const variantList = {
-    color: [
-        {
-            type: "blue",
-            value: [],
-        },
-        {
-            type: "orange",
-            value: [],
-        },
-        {
-            type: "violet",
-            value: [],
-        },
-        {
-            type: "green",
-            value: [],
-        },
-    ],
-
-    shape: [
-        {
-            type: "cricle",
-            value: [],
-        },
-        {
-            type: "triangle",
-            value: [],
-        },
-        {
-            type: "squre",
-            value: [],
-        },
-        {
-            type: "star",
-            value: [],
-        },
-    ],
-
-    style: [
-        {
-            type: "dot",
-            value: [],
-        },
-        {
-            type: "scale",
-            value: [],
-        },
-        {
-            type: "non",
-            value: [],
-        },
-        {
-            type: "fill",
-            value: [],
-        },
-    ],
-};
-
 // console.log(variantList.color);
 const colorList = ["blue", "orange", "violet", "green"];
 const shapeList = ["circle", "triangle", "squre", "star"];
@@ -78,23 +19,23 @@ colorList.forEach((color) => {
             const word = imageList[i - 1];
             const letter = word.img.charAt(0);
 
-            if (letter == "b") {
-                variantList.color[0].value.push(`${color}-${shape}-${style}`);
-                variantList.shape[0].value.push(`${color}-${shape}-${style}`);
-                variantList.style[0].value.push(`${color}-${shape}-${style}`);
-            } else if (letter == "o") {
-                variantList.color[1].value.push(`${color}-${shape}-${style}`);
-                variantList.shape[1].value.push(`${color}-${shape}-${style}`);
-                variantList.style[1].value.push(`${color}-${shape}-${style}`);
-            } else if (letter == "v") {
-                variantList.color[2].value.push(`${color}-${shape}-${style}`);
-                variantList.shape[2].value.push(`${color}-${shape}-${style}`);
-                variantList.style[2].value.push(`${color}-${shape}-${style}`);
-            } else if (letter == "g") {
-                variantList.color[3].value.push(`${color}-${shape}-${style}`);
-                variantList.shape[3].value.push(`${color}-${shape}-${style}`);
-                variantList.style[3].value.push(`${color}-${shape}-${style}`);
-            }
+            // if (letter == "b") {
+            //     variantList.color[0].value.push(`${color}-${shape}-${style}`);
+            //     variantList.shape[0].value.push(`${color}-${shape}-${style}`);
+            //     variantList.style[0].value.push(`${color}-${shape}-${style}`);
+            // } else if (letter == "o") {
+            //     variantList.color[1].value.push(`${color}-${shape}-${style}`);
+            //     variantList.shape[1].value.push(`${color}-${shape}-${style}`);
+            //     variantList.style[1].value.push(`${color}-${shape}-${style}`);
+            // } else if (letter == "v") {
+            //     variantList.color[2].value.push(`${color}-${shape}-${style}`);
+            //     variantList.shape[2].value.push(`${color}-${shape}-${style}`);
+            //     variantList.style[2].value.push(`${color}-${shape}-${style}`);
+            // } else if (letter == "g") {
+            //     variantList.color[3].value.push(`${color}-${shape}-${style}`);
+            //     variantList.shape[3].value.push(`${color}-${shape}-${style}`);
+            //     variantList.style[3].value.push(`${color}-${shape}-${style}`);
+            // }
         });
     });
 });
@@ -153,9 +94,7 @@ class CardGame {
             divCreator(src, index);
         });
     }
-
     // Click handeller
-
     cardListclickHandler() {
         const itemList = document.querySelectorAll(".item");
 
@@ -171,30 +110,11 @@ class CardGame {
 }
 
 const game = new CardGame();
-// console.log(game.allCardlist());
-console.log(game.counDown(71));
 
 // game.cardTable();
 game.cardListclickHandler();
 
-// function callOnclick() {
-//     console.log("Hellow World")
-// }
 
-// console.log(imageList);
-
-// Genared 16 difrent style
-// const firstSixteen = [];
-// const color = variantList.shape;
-
-// color.forEach((colorvaluelist) => {
-
-//     const colorValue = colorvaluelist.value;
-
-//     colorValue.forEach((value) => {
-//         console.log(value);
-//     });
-// });
 
 const cardTableImgStorage = [];
 function generateRandomTableImg() {
@@ -212,6 +132,8 @@ function generateRandomTableImg() {
 
 generateRandomTableImg();
 // console.log(cardImgStorage);
-cardImgStorage.map((item, index) => {
+cardTableImgStorage.map((item, index) => {
     divCreator(item, index);
 });
+
+console.log(variantList);
