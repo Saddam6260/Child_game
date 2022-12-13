@@ -127,29 +127,6 @@ function generateRandomTableImg() {
   }
 }
 
-// const person = {
-//     name : "Saddam",
-//     roll : 01,
-
-//     set changesetRoll(n) {
-//         this.roll = n+5;
-//     }
-// };
-
-// person.changesetRoll = 01;
-// console.log(person);
-
-// const rejoan = {
-//     name : "rejoan",
-//     roll : 01,
-
-//     get changegetName() {
-//         return this.name = "Saddam";
-//     }
-// };
-
-// console.log(rejoan.changegetName);
-
 
 generateRandomTableImg();
 // console.log(cardImgStorage);
