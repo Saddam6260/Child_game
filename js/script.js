@@ -59,16 +59,20 @@ const variantList = {
 
 // console.log(variantList.color);
 const colorList = ["blue", "orange", "violet", "green"];
+const shapeList = ["circle", "triangle", "squre", "star"];
+const styleList = ["dot", "scale", "non", "fill"];
 const imageList = [];
 let i = 0;
 
 colorList.forEach((color) => {
-    const shape = ["circle", "triangle", "squre", "star"];
-    shape.forEach((shape) => {
-        const style = ["dot", "scale", "non", "fill"];
-
-        style.forEach((style) => {
-            imageList.push({ img:`${color}-${shape}-${style}.png`, color : color, shape : shape, style : style});
+    shapeList.forEach((shape) => {
+        styleList.forEach((style) => {
+            imageList.push({
+                img: `${color}-${shape}-${style}.png`,
+                color: color,
+                shape: shape,
+                style: style,
+            });
             i += 1;
 
             const word = imageList[i - 1];
@@ -98,10 +102,8 @@ colorList.forEach((color) => {
 // create div
 const cardListContainer = document.getElementById("card_list");
 
-
-
 const divCreator = (data, div_class) => {
-    const {img, color, shape, style} = data;
+    const { img, color, shape, style } = data;
     const imgTag = document.createElement("img");
     imgTag.src = `img/cardList/${img}`;
     imgTag.alt = "card image";
@@ -113,7 +115,6 @@ const divCreator = (data, div_class) => {
     divTage.appendChild(imgTag);
     cardListContainer.appendChild(divTage);
 };
-
 
 // Timmer Functions
 
@@ -150,9 +151,9 @@ class CardGame {
 
         fontImage.forEach((src, index) => {
             divCreator(src, index);
-        })
+        });
     }
-    
+
     // Click handeller
 
     cardListclickHandler() {
@@ -160,8 +161,8 @@ class CardGame {
 
         itemList.forEach((value, index) => {
             // console.log(value);
-            value.addEventListener("click", callOnclick)
-        }) 
+            value.addEventListener("click", value);
+        });
         // item.addEventListener("click", function() {
         //     console.log("click")
         // });
@@ -173,13 +174,12 @@ const game = new CardGame();
 // console.log(game.allCardlist());
 console.log(game.counDown(71));
 
-
-game.cardTable();
+// game.cardTable();
 game.cardListclickHandler();
 
-function callOnclick() {
-    console.log("Hellow World")
-}
+// function callOnclick() {
+//     console.log("Hellow World")
+// }
 
 // console.log(imageList);
 
@@ -188,7 +188,7 @@ function callOnclick() {
 // const color = variantList.shape;
 
 // color.forEach((colorvaluelist) => {
-    
+
 //     const colorValue = colorvaluelist.value;
 
 //     colorValue.forEach((value) => {
@@ -196,7 +196,22 @@ function callOnclick() {
 //     });
 // });
 
-console.log(variantList)
+const cardTableImgStorage = [];
+function generateRandomTableImg() {
+    const virtualImgList = [...imageList];
+    let count = 0;
+    while (cardTableImgStorage.length <= 63) {
+        const randomIndex = Math.round(Math.random() * 63);
+        if (virtualImgList[randomIndex] !== undefined) {
+            const [sliceItem] = virtualImgList.splice(randomIndex, 1);
+            cardTableImgStorage.push(sliceItem);
+        }
+        count++;
+    }
+}
 
-
-
+generateRandomTableImg();
+// console.log(cardImgStorage);
+cardImgStorage.map((item, index) => {
+    divCreator(item, index);
+});
