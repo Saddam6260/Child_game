@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Small Game</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <section>
-        <div class="container">
-            <div id="left_card">
-                <img src="img/four-icon-bg.png" alt="">    
-            </div>
-            <div id="card_list">
-                <!-- genareted  by javascripts -->
-            </div>
-            <div id="rightCard">
-                <div class="incressCount">
-                    <p>0</p>  
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Small Game</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <section>
+            <div class="container">
+                <div id="left_card">
+                    <img src="img/four-icon-bg.png" alt="" />
                 </div>
-                <div class="timmer">
-                    <p>00:00</p>
+                <div id="card_list">
+                    <!-- genareted  by javascripts -->
                 </div>
-                <div class="discressCount">
-                    <p class="discress">48</p>
+                <div id="rightCard">
+                    <!-- select card  -->
+                    <div class="randomCard">
+                        <img
+                            src="img/cardList/blue-circle-dot.png"
+                            alt="random card image"
+                        />
+                    </div>
+                    <!-- point  -->
+                    <div class="incressCount">
+                        <p>0</p>
+                    </div>
+                    <!-- timer  -->
+                    <div class="timmer">
+                        <p>00:00</p>
+                    </div>
+                    <!-- cart list  -->
+                    <div class="discressCount">
+                        <p class="discress">48</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="control-btn">
+                <button class="play-pause">
+                    <img src="./img/play.png" alt="play image" />
+                </button>
+                <button class="reset">
+                    <img src="./img/reset.png" alt="reset image" />
+                </button>
+            </div>
+        </section>
 
-    <script type="module" src="js/script.js"></script>
-</body>
+        <script type="module" src="js/script.js"></script>
+    </body>
 </html>

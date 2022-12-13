@@ -1,5 +1,6 @@
 import { dataWith64Img, dataWith64RandomImg } from "./data.js";
 
+
 // Timmer Functions
 
 class CardGame {
@@ -47,7 +48,24 @@ class CardGame {
     cardTable() {
         const fontImage = this.randomImg.slice(0, 16);
         fontImage.forEach((src, index) => {
-            divCreator(src, index);
+            this.divCreator(src, index);
         });
     }
+    
+    // start game 
+    gameEngine() {
+        // this.cardTable();
+    }
+    // game control btns
+    controlBtnHandler() {
+        console.log('hello')
+    }
+
+
 }
+
+const game = new CardGame();
+
+
+game.controlBtnHandler()
+game.cardTable()
