@@ -174,27 +174,27 @@ const game = new CardGame();
 // console.log(game.allCardlist());
 console.log(game.counDown(71));
 
-// game.cardTable();
+game.cardTable();
 game.cardListclickHandler();
 
-// function callOnclick() {
-//     console.log("Hellow World")
-// }
+function callOnclick() {
+    console.log("Hellow World")
+}
 
-// console.log(imageList);
+console.log(imageList);
 
 // Genared 16 difrent style
-// const firstSixteen = [];
-// const color = variantList.shape;
+const firstSixteen = [];
+const color = variantList.shape;
 
-// color.forEach((colorvaluelist) => {
+color.forEach((colorvaluelist) => {
 
-//     const colorValue = colorvaluelist.value;
+    const colorValue = colorvaluelist.value;
 
-//     colorValue.forEach((value) => {
-//         console.log(value);
-//     });
-// });
+    colorValue.forEach((value) => {
+        console.log(value);
+    });
+});
 
 const cardTableImgStorage = [];
 function generateRandomTableImg() {
