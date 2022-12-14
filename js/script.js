@@ -43,26 +43,36 @@ class CardGame {
     }
     // count down method
     gameTimer(count = 60) {
-        let counter = count;
-        let timmer = setInterval((e) => {
-            counter--;
-            if ("0" == counter) {
-                clearInterval(timmer);
-            }
+        if (this.gameControlSwitch.playing) {
+            let counter = count;
+            let timmer = setInterval((e) => {
+                counter--;
+                if ("0" == counter) {
+                    clearInterval(timmer);
+                }
 
-            // time spliter
-            const muniteSec = [0, 0];
-            muniteSec[0] = Math.floor(counter / 60);
-            muniteSec[1] =
-                counter <= 59 ? counter : counter - 60 * muniteSec[0];
-            let [munite, sec] = muniteSec;
+                // check condition
+                if (!this.gameControlSwitch.playing) {
+                    clearInterval(timmer);
+                }
 
-            // Update counter
-            const timmerTage = document.querySelector(".timmer p");
-            timmerTage.innerHTML = `0${munite}:${
-                sec.toString().length == 2 ? sec : `0${sec}`
-            }`;
-        }, 1000);
+                // update timer data
+                this.gameControlSwitch.timer = counter;
+                // time spliter
+                const muniteSec = [0, 0];
+                muniteSec[0] = Math.floor(counter / 60);
+                muniteSec[1] =
+                    counter <= 59 ? counter : counter - 60 * muniteSec[0];
+                let [munite, sec] = muniteSec;
+
+                // Update counter
+                const timmerTage = document.querySelector(".timmer p");
+                timmerTage.innerHTML = `0${munite}:${
+                    sec.toString().length == 2 ? sec : `0${sec}`
+                }`;
+            }, 1000);
+            return timmer;
+        }
     }
     // Card Table
     cardTable(data) {
@@ -133,25 +143,34 @@ class CardGame {
     }
     // start game
     gameEngine() {
-        this.cardTableList = this.randomImg.splice(0, 16);
-        // this is the card that will see user and select card from the table
-        const pickedCard =
-            this.cardTableList[
-                Math.floor(Math.random() * (this.cardTableList.length - 1))
-            ];
-        // update selected card storage
-        this.selectedCard = pickedCard;
-        // this function will update the table
-        this.cardTable(this.cardTableList);
-        // store total image length that not been served in table
-        this.cardStoreHandler(this.randomImg.length);
-        // selected card counter
-        this.selectCardCounterHandler(pickedCard);
-        // this function will compare data and game point handler
+        if (this.gameControlSwitch.startBegining) {
+            this.cardTableList = this.randomImg.splice(0, 16);
+            // this is the card that will see user and select card from the table
+            const pickedCard =
+                this.cardTableList[
+                    Math.floor(Math.random() * (this.cardTableList.length - 1))
+                ];
+            // update selected card storage
+            this.selectedCard = pickedCard;
+            // this function will update the table
+            this.cardTable(this.cardTableList);
+            // store total image length that not been served in table
+            this.cardStoreHandler(this.randomImg.length);
+            // selected card counter
+            this.selectCardCounterHandler(pickedCard);
+            // this function will compare data and game point handler
+        }
     }
     // game start handler
     start() {
         this.gameEngine();
+        this.gameTimer(this.gameControlSwitch.timer);
+    }
+    // pause game
+    pause() {
+        console.log("pause switch");
+        this.gameControlSwitch.playing = false;
+        this.gameControlSwitch.startBegining = false;
     }
     // game control panel
     controlBtnHandler() {
@@ -163,16 +182,17 @@ class CardGame {
         playPauseBtn.addEventListener("click", () => {
             // this.gameControlSwitch.playing = true;
             if (this.gameControlSwitch.playing) {
+                // on click if game running play pause
+                this.pause();
+                // replace icon
                 playPauseIcon.src = "img/play.png";
+                // update playing state
                 this.gameControlSwitch.playing = false;
             } else {
                 this.gameControlSwitch.playing = true;
                 playPauseIcon.src = "img/pause.png";
                 // check if the game started before and if it's in playing state
-                if (
-                    this.gameControlSwitch.playing &&
-                    this.gameControlSwitch.startBegining
-                ) {
+                if (this.gameControlSwitch.playing) {
                     this.start();
                 }
             }
