@@ -14,8 +14,13 @@ class CardGame {
         this.gamePoint = 0;
         // all the table visual card list here
         this.cardTableList = [];
-        // play state 
-        this.play = false;
+        // play state
+        this.gameControlSwitch = {
+            playing: false,
+            startBegining: true,
+            reset: false,
+            timer: 60,
+        };
     }
     // table image generator
     divCreator(data) {
@@ -150,15 +155,36 @@ class CardGame {
     }
     // game control panel
     controlBtnHandler() {
+        // play pause btn
         const playPauseBtn = document.querySelector(".play-pause");
-        playPauseBtn.addEventListener('click', this.start)
+        const playPauseIcon = document.querySelector(".play-pause img");
+
+        // execute on play btn click
+        playPauseBtn.addEventListener("click", () => {
+            // this.gameControlSwitch.playing = true;
+            if (this.gameControlSwitch.playing) {
+                playPauseIcon.src = "img/play.png";
+                this.gameControlSwitch.playing = false;
+            } else {
+                this.gameControlSwitch.playing = true;
+                playPauseIcon.src = "img/pause.png";
+                // check if the game started before and if it's in playing state
+                if (
+                    this.gameControlSwitch.playing &&
+                    this.gameControlSwitch.startBegining
+                ) {
+                    this.start();
+                }
+            }
+        });
     }
-    // initialized 
+    // initialized
     init() {
-        this.controlBtnHandler()
+        this.controlBtnHandler();
     }
 }
 
 const game = new CardGame();
 
-game.start();
+game.init();
+// game.start()
