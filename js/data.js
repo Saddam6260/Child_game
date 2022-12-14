@@ -8,7 +8,7 @@ colorList.forEach((color) => {
     shapeList.forEach((shape) => {
         styleList.forEach((style) => {
             dataWith64Img.push({
-                img: `${color}-${shape}-${style}.png`,
+                img: `img/cardList/${color}-${shape}-${style}.png`,
                 color: color,
                 shape: shape,
                 style: style,

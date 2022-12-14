@@ -74,7 +74,7 @@ section {
     display: flex;
     flex-flow: column wrap;
 }
-#rightCard .incressCount,
+#rightCard .gamePoint,
 #rightCard .cardStore {
     background-size: 100% 100%;
     width: 100px;
@@ -84,10 +84,10 @@ section {
     justify-content: center;
     align-items: center;
 }
-#rightCard .incressCount {
+#rightCard .gamePoint {
     background-image: url("../img/star-bg.png");
 }
-#rightCard .incressCount p {
+#rightCard .gamePoint p {
     margin-top: 20px;
     font-size: 40px;
 }
@@ -151,10 +151,10 @@ section {
     width: 60px;
     height: 60px;
     background-color: white;
-    animation-name: zoomInOut;
+    /* animation-name: zoomInOut;
     animation-duration: 3s;
     animation-iteration-count: infinite;
-    animation-direction: alternate-reverse;
+    animation-direction: alternate-reverse; */
 }
 
 @keyframes zoomInOut {
