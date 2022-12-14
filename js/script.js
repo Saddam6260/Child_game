@@ -1,6 +1,5 @@
 import { dataWith64Img, dataWith64RandomImg } from "./data.js";
 
-
 // Timmer Functions
 
 class CardGame {
@@ -45,27 +44,35 @@ class CardGame {
         }, 1000);
     }
     // Card Table
-    cardTable() {
-        const fontImage = this.randomImg.slice(0, 16);
-        fontImage.forEach((src, index) => {
+    cardTable(data) {
+        data.forEach((src, index) => {
             this.divCreator(src, index);
         });
     }
-    
-    // start game 
+    // card store
+    cardStoreHandler(length = 0) {
+        const tag = document.querySelector('.cardStore p');
+        length ? tag.innerHTML = length : tag.innerHTML = 0;
+    }
+    // select card counter
+    selectCardCounterHandler() {}
+    // start game
     gameEngine() {
-        // this.cardTable();
+        const storage = [...this.randomImg];
+        this.cardTable(storage.splice(0, 16));
+        // store total image length that not been served in table
+        this.cardStoreHandler(storage.length);
     }
     // game control btns
     controlBtnHandler() {
-        console.log('hello')
+        
     }
-
-
+    // game start handler
+    start() {
+        this.gameEngine();
+    }
 }
 
 const game = new CardGame();
 
-
-game.controlBtnHandler()
-game.cardTable()
+game.start();
