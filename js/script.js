@@ -7,8 +7,9 @@ class CardGame {
         // all card
         this.img = dataWith64Img;
         // all card in random style
-        this.randomImg = dataWith64RandomImg;
+        this.randomImg = [...dataWith64RandomImg.splice(0, 4)];
         // the selected card
+        this.selectedCardIndex = null;
         this.selectedCard = {};
         // game point
         this.gamePoint = 0;
@@ -20,6 +21,7 @@ class CardGame {
             startBegining: true,
             reset: false,
             timer: 60,
+            complete: false,
         };
     }
     // table image generator
@@ -102,17 +104,28 @@ class CardGame {
         ) {
             // increment point
             this.gamePointHandler(this.gamePoint + 1);
-            // remove clicked card
-            div.remove();
+
             // remove click data from storage
             this.cardTableList = this.cardTableList.filter((item, index) => {
-                return clickedData.img !== item.img;
+                return item ? clickedData.img !== item.img : null;
             });
-            console.log("card list on table ", this.cardTableList);
             // update table card counter
             const [newCard] = this.randomImg.splice(0, 1);
             this.cardTableList.push(newCard);
-            this.divCreator(newCard);
+            // remove clicked card
+            if (this.cardTableList.length >= 3) {
+                console.log("card length", this.cardTableList.length);
+                div.remove();
+                this.divCreator(newCard);
+            } else {
+                div.remove();
+                // update game complete
+                this.gameControlSwitch.complete = true;
+                // remove the last div 
+                const lastDiv = document.querySelector("#card_list .item");
+                // lastDiv.remove();
+                console.log(lastDiv)
+            }
             // this.divCreator(this.selectedCard.splice(0, 1));
             this.cardStoreHandler(this.randomImg.length);
             // generate new selected card
@@ -120,8 +133,7 @@ class CardGame {
                 this.cardTableList[
                     Math.floor(Math.random() * (this.cardTableList.length - 1))
                 ];
-            console.log("table data", this.cardTableList);
-            console.log("picked card", pickedCard);
+
             // update selected card storage
             this.selectedCard = pickedCard;
             // update selected counter
@@ -146,10 +158,11 @@ class CardGame {
         if (this.gameControlSwitch.startBegining) {
             this.cardTableList = this.randomImg.splice(0, 16);
             // this is the card that will see user and select card from the table
-            const pickedCard =
-                this.cardTableList[
-                    Math.floor(Math.random() * (this.cardTableList.length - 1))
-                ];
+            this.selectedCardIndex = Math.floor(
+                Math.random() * (this.cardTableList.length - 1)
+            );
+            const pickedCard = this.cardTableList[this.selectedCardIndex];
+            console.log(this.selectedCardIndex);
             // update selected card storage
             this.selectedCard = pickedCard;
             // this function will update the table
