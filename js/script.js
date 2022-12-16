@@ -92,6 +92,18 @@ class CardGame {
         const selectedCard = document.querySelector(".selectCardCounter img");
         data.img ? (selectedCard.src = data.img) : null;
     }
+    // game complete 
+    completeMsg() {
+
+        const container = document.querySelector('.container');
+        const leftCard = document.querySelector('#left_card');
+        const centerCardTable = document.querySelector('#card_list');
+        const rightCard = document.querySelector('#rightCard');
+
+        // hide left and right card 
+        
+        
+    }
     // table card click detector
     tableCardClickDetector(clickedData, div) {
         // console.log(div)

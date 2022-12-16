@@ -157,6 +157,59 @@ section {
     animation-direction: alternate-reverse; */
 }
 
+.container.complete {
+    /* grid-template-columns: 1fr; */
+}
+
+.complete-msg {
+    display: none;
+}
+
+.complete .complete-msg,
+.start .start-msg {
+    grid-column: span 4;
+    grid-row: span 4;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.complete-msg > *,
+.start-msg > * {
+    margin-bottom: 20px;
+}
+
+.complete-msg *, .start-msg * {
+    background-color: transparent;
+}
+.complete-msg h1 , .start-msg h1 {
+    background-color: transparent;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.complete-msg p, .start-msg p {
+    font-size: 20px;
+}
+
+.complete #left_card,
+.complete #rightCard {
+    display: none;
+}
+
+.complete #card_list {
+    grid-column: 2/3;
+}
+
+.complete .game-details {
+    display: flex;
+    column-gap: 15px;
+    background-color: transparent;
+}
+
 @keyframes zoomInOut {
     0% {
         transform: scale(1);
