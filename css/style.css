@@ -244,6 +244,11 @@ section {
 .start .selectCardCounter {
     display: none;
 }
+
+
+.complete .control-btn .play-pause {
+    display: none;
+}
 @keyframes zoomInOut {
     0% {
         transform: scale(1);
