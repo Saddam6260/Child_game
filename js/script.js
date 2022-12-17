@@ -20,7 +20,7 @@ class CardGame {
             playing: false,
             startBegining: true,
             reset: false,
-            timer: 60,
+            timer: 5,
             complete: false,
             gamePosition: "start", // start , continue , complete
         };
@@ -69,6 +69,14 @@ class CardGame {
 
                 // update timer data
                 this.gameControlSwitch.timer = counter;
+
+                // if counter 0 then show timeout message
+                if (!this.gameControlSwitch.timer) {
+                    this.viewClassUpdater("complete");
+                    this.completeMsg(
+                        "Sory, just run out of time. Please try again"
+                    );
+                }
                 // time spliter
                 const muniteSec = [0, 0];
                 muniteSec[0] = Math.floor(this.gameControlSwitch.timer / 60);
@@ -106,9 +114,13 @@ class CardGame {
         data.img ? (selectedCard.src = data.img) : null;
     }
     // game complete
-    completeMsg() {
+    completeMsg(text = false) {
         const getMsg = document.querySelector(".complete-msg .game-details");
-        getMsg.innerHTML = `in ${this.gameControlSwitch.timer}s and got ${this.gamePoint}`;
+        getMsg.innerHTML =
+            text ||
+            `   <p>You have completed the game successfully</p>
+                <p>in ${this.gameControlSwitch.timer}s and got ${this.gamePoint}</p>
+            `;
         console.log(getMsg);
         // hide left and right card
     }
@@ -208,9 +220,18 @@ class CardGame {
         this.gameControlSwitch.playing = false;
         this.gameControlSwitch.startBegining = false;
     }
+
+    // reset button
+    reset() {}
     // game control panel
     controlBtnHandler() {
         const gameWrap = document.querySelector("section#game-wrap");
+
+        // reset btn
+        const getResetBtn = document.querySelector(".reset");
+        getResetBtn.addEventListener("click", () => {
+            console.log("reset");
+        });
 
         // play pause btn
         const playPauseBtn = document.querySelector(".play-pause");

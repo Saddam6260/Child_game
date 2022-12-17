@@ -236,9 +236,10 @@ section {
 }
 
 .complete .game-details {
-    display: flex;
-    column-gap: 15px;
+    /* display: flex; */
+    /* column-gap: 15px; */
     background-color: transparent;
+    text-align: center;
 }
 .complete .selectCardCounter,
 .start .selectCardCounter {
@@ -247,6 +248,10 @@ section {
 
 
 .complete .control-btn .play-pause {
+    display: none;
+}
+
+.complete .item {
     display: none;
 }
 @keyframes zoomInOut {
