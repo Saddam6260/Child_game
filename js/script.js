@@ -71,16 +71,20 @@ class CardGame {
                 this.gameControlSwitch.timer = counter;
                 // time spliter
                 const muniteSec = [0, 0];
-                muniteSec[0] = Math.floor(counter / 60);
+                muniteSec[0] = Math.floor(this.gameControlSwitch.timer / 60);
                 muniteSec[1] =
-                    counter <= 59 ? counter : counter - 60 * muniteSec[0];
+                    this.gameControlSwitch.timer <= 59
+                        ? this.gameControlSwitch.timer
+                        : this.gameControlSwitch.timer - 60 * muniteSec[0];
                 let [munite, sec] = muniteSec;
 
                 // Update counter
-                const timmerTage = document.querySelector(".timmer p");
-                timmerTage.innerHTML = `0${munite}:${
-                    sec.toString().length == 2 ? sec : `0${sec}`
-                }`;
+                if (this.gameControlSwitch.gamePosition !== "complete") {
+                    const timmerTage = document.querySelector(".timmer p");
+                    timmerTage.innerHTML = `0${munite}:${
+                        sec.toString().length == 2 ? sec : `0${sec}`
+                    }`;
+                }
             }, 1000);
             return timmer;
         }
@@ -103,11 +107,9 @@ class CardGame {
     }
     // game complete
     completeMsg() {
-        const container = document.querySelector(".container");
-        const leftCard = document.querySelector("#left_card");
-        const centerCardTable = document.querySelector("#card_list");
-        const rightCard = document.querySelector("#rightCard");
-
+        const getMsg = document.querySelector(".complete-msg .game-details");
+        getMsg.innerHTML = `in ${this.gameControlSwitch.timer}s and got ${this.gamePoint}`;
+        console.log(getMsg);
         // hide left and right card
     }
     // table card click detector
@@ -143,6 +145,9 @@ class CardGame {
                 lastDiv.remove();
                 this.gameControlSwitch.gamePosition = "complete";
                 this.viewClassUpdater(this.gameControlSwitch.gamePosition);
+                // stop timer
+                this.gameControlSwitch.playing = false;
+                this.completeMsg();
             }
             // this.divCreator(this.selectedCard.splice(0, 1));
             this.cardStoreHandler(this.randomImg.length);
@@ -244,8 +249,7 @@ class CardGame {
     }
     // initialized
     init() {
-        console.log('running')
-        this.gameControlSwitch.gamePosition = 'start';
+        this.gameControlSwitch.gamePosition = "start";
         this.viewClassUpdater(this.gameControlSwitch.gamePosition);
         this.controlBtnHandler();
     }
