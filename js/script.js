@@ -22,7 +22,16 @@ class CardGame {
             reset: false,
             timer: 60,
             complete: false,
+            gamePosition: "start", // start , continue , complete
         };
+    }
+
+    // view updater
+    viewClassUpdater(newClass = "") {
+        const getSection = document.querySelector("#game-wrap");
+
+        getSection.classList.remove(getSection.classList[0]);
+        getSection.classList.add(newClass);
     }
     // table image generator
     divCreator(data) {
@@ -92,17 +101,14 @@ class CardGame {
         const selectedCard = document.querySelector(".selectCardCounter img");
         data.img ? (selectedCard.src = data.img) : null;
     }
-    // game complete 
+    // game complete
     completeMsg() {
+        const container = document.querySelector(".container");
+        const leftCard = document.querySelector("#left_card");
+        const centerCardTable = document.querySelector("#card_list");
+        const rightCard = document.querySelector("#rightCard");
 
-        const container = document.querySelector('.container');
-        const leftCard = document.querySelector('#left_card');
-        const centerCardTable = document.querySelector('#card_list');
-        const rightCard = document.querySelector('#rightCard');
-
-        // hide left and right card 
-        
-        
+        // hide left and right card
     }
     // table card click detector
     tableCardClickDetector(clickedData, div) {
@@ -126,17 +132,17 @@ class CardGame {
             this.cardTableList.push(newCard);
             // remove clicked card
             if (this.cardTableList.length >= 3) {
-                console.log("card length", this.cardTableList.length);
                 div.remove();
                 this.divCreator(newCard);
             } else {
                 div.remove();
                 // update game complete
                 this.gameControlSwitch.complete = true;
-                // remove the last div 
+                // remove the last div
                 const lastDiv = document.querySelector("#card_list .item");
-                // lastDiv.remove();
-                console.log(lastDiv)
+                lastDiv.remove();
+                this.gameControlSwitch.gamePosition = "complete";
+                this.viewClassUpdater(this.gameControlSwitch.gamePosition);
             }
             // this.divCreator(this.selectedCard.splice(0, 1));
             this.cardStoreHandler(this.randomImg.length);
@@ -199,12 +205,25 @@ class CardGame {
     }
     // game control panel
     controlBtnHandler() {
+        const gameWrap = document.querySelector("section#game-wrap");
+
         // play pause btn
         const playPauseBtn = document.querySelector(".play-pause");
         const playPauseIcon = document.querySelector(".play-pause img");
 
+        // start msg play btn
+        const startMsgPlayBtn = document.querySelector("#msgStartBtn");
+        startMsgPlayBtn.addEventListener("click", () => {
+            gameWrap.classList.replace("start", "continue");
+            PlayHandler();
+        });
+
         // execute on play btn click
         playPauseBtn.addEventListener("click", () => {
+            PlayHandler();
+        });
+        // PlayHandler().bind(this);
+        const PlayHandler = () => {
             // this.gameControlSwitch.playing = true;
             if (this.gameControlSwitch.playing) {
                 // on click if game running play pause
@@ -221,10 +240,13 @@ class CardGame {
                     this.start();
                 }
             }
-        });
+        };
     }
     // initialized
     init() {
+        console.log('running')
+        this.gameControlSwitch.gamePosition = 'start';
+        this.viewClassUpdater(this.gameControlSwitch.gamePosition);
         this.controlBtnHandler();
     }
 }

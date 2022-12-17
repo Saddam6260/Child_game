@@ -157,14 +157,42 @@ section {
     animation-direction: alternate-reverse; */
 }
 
-.container.complete {
-    /* grid-template-columns: 1fr; */
+/* start  */
+.start .control-btn {
+    display: none;
 }
+
+#msgStartBtn {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 2px solid rgb(121, 121, 121);
+}
+
+#msgStartBtn img {
+    width: 100%;
+}
+
+/* continue  */
+.continue {
+
+}
+
+.continue .start-msg {
+    display: none;
+}
+
+/* complete  */
 
 .complete-msg {
     display: none;
 }
 
+.complete .start-msg {
+    display: none;
+}
 .complete .complete-msg,
 .start .start-msg {
     grid-column: span 4;
@@ -182,23 +210,26 @@ section {
     margin-bottom: 20px;
 }
 
-.complete-msg *, .start-msg * {
+.complete-msg *,
+.start-msg * {
     background-color: transparent;
 }
-.complete-msg h1 , .start-msg h1 {
+.complete-msg h1,
+.start-msg h1 {
     background-color: transparent;
     font-size: 45px;
     margin-bottom: 10px;
 }
 
-.complete-msg p, .start-msg p {
+.complete-msg p,
+.start-msg p {
     font-size: 20px;
 }
 
-.complete #left_card,
+/* .complete #left_card,
 .complete #rightCard {
     display: none;
-}
+} */
 
 .complete #card_list {
     grid-column: 2/3;
@@ -209,7 +240,10 @@ section {
     column-gap: 15px;
     background-color: transparent;
 }
-
+.complete .selectCardCounter,
+.start .selectCardCounter {
+    display: none;
+}
 @keyframes zoomInOut {
     0% {
         transform: scale(1);
