@@ -230,7 +230,7 @@ class CardGame {
         // reset btn
         const getResetBtn = document.querySelector(".reset");
         getResetBtn.addEventListener("click", () => {
-            console.log("reset");
+            location.reload();
         });
 
         // play pause btn
