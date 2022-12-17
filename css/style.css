@@ -184,6 +184,14 @@ section {
     display: none;
 }
 
+.notice {
+    opacity: 0;
+}
+
+.continue .notice {
+    margin-bottom: 20px;
+    opacity: 1;
+}
 /* complete  */
 
 .complete-msg {

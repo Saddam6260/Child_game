@@ -7,7 +7,7 @@ class CardGame {
         // all card
         this.img = dataWith64Img;
         // all card in random style
-        this.randomImg = [...dataWith64RandomImg.splice(0, 4)];
+        this.randomImg = [...dataWith64RandomImg.splice(0, 20)];
         // the selected card
         this.selectedCardIndex = null;
         this.selectedCard = {};
@@ -20,7 +20,7 @@ class CardGame {
             playing: false,
             startBegining: true,
             reset: false,
-            timer: 5,
+            timer: 40,
             complete: false,
             gamePosition: "start", // start , continue , complete
         };
